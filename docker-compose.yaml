@@ -1,0 +1,27 @@
+services:
+  ktor-backend:
+    build: .
+    container_name: ktor_service
+    ports:
+      - "8080:8080"
+    environment:
+      # Link to the postgres service below
+      DB_URL: "jdbc:postgresql://postgres_db:5432/my_database"
+      DB_USER: "admin"
+      DB_PASSWORD: "secret"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: my_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

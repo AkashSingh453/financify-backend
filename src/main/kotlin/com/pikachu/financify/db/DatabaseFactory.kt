@@ -45,7 +45,7 @@ object DatabaseFactory {
 //        }
 
         val hikariConfig = HikariConfig().apply {
-            jdbcUrl = "jdbc:postgresql://localhost:5432/my_database"
+            jdbcUrl = "jdbc:postgresql://postgres_db:5432/my_database"
             driverClassName = "org.postgresql.Driver"
             username = "admin"
             password = "secret"
